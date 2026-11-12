@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>小众旅行微站矩阵 · 3 套垂直主题模板预览</title>
+  <meta name="robots" content="noindex">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', sans-serif;
+      background: #f5f2ec;
+      color: #181614;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { width: min(1260px, 100% - 40px); margin: 0 auto; padding: 52px 0 76px; }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(24, 22, 20, .12);
+    }
+    .eyebrow {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #8a5a36;
+      margin-bottom: 8px;
+      display: block;
+    }
+    h1 {
+      margin: 0;
+      font-family: 'Songti SC', 'Noto Serif SC', Georgia, serif;
+      font-size: clamp(28px, 3.6vw, 42px);
+      font-weight: 600;
+      letter-spacing: -.01em;
+      line-height: 1.18;
+    }
+    .sub {
+      margin: 10px 0 0;
+      color: #635c54;
+      max-width: 64ch;
+      font-size: 15px;
+    }
+    .pills { display: flex; gap: 8px; flex-wrap: wrap; }
+    .pill {
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: #fffdf9;
+      border: 1px solid rgba(24, 22, 20, .12);
+      color: #3d3833;
+    }
+    .grid {
+      display: grid;
+      gap: 28px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 36px;
+    }
+    @media (max-width: 980px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: #fffdf9;
+      border: 1px solid rgba(24, 22, 20, .1);
+      border-radius: 16px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 44px -24px rgba(24, 22, 20, .2);
+      transition: transform .25s cubic-bezier(.22,1,.36,1), box-shadow .25s;
+    }
+    .card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 56px -22px rgba(24, 22, 20, .28);
+    }
+    .media { position: relative; aspect-ratio: 16 / 10; overflow: hidden; display: block; }
+    .media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+    .card:hover .media img { transform: scale(1.04); }
+    .theme-chip {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      background: rgba(18, 17, 16, .76);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .08em;
+      padding: 5px 11px;
+      border-radius: 999px;
+    }
+    .body { padding: 24px; display: flex; flex-direction: column; gap: 12px; flex: 1; }
+    .vibe { font-size: 12.5px; font-weight: 600; letter-spacing: .03em; }
+    .name {
+      font-family: 'Songti SC', 'Noto Serif SC', Georgia, serif;
+      font-size: 24px;
+      font-weight: 600;
+      margin: 0;
+      color: #181614;
+      text-decoration: none;
+    }
+    .pos { font-size: 14px; color: #635c54; margin: 0; }
+    .cats { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+    .cat {
+      font-size: 11.5px;
+      padding: 3px 9px;
+      border-radius: 6px;
+      background: #f2ede4;
+      color: #463f38;
+    }
+    .actions {
+      margin-top: auto;
+      padding-top: 16px;
+      border-top: 1px solid rgba(24, 22, 20, .09);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 9px 18px;
+      border-radius: 8px;
+      background: #181614;
+      color: #fff;
+      text-decoration: none;
+      font-size: 13.5px;
+      font-weight: 600;
+    }
+    .btn:hover { opacity: .9; }
+    .deep {
+      font-size: 12.5px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .deep:hover { text-decoration: underline; }
+    .arch {
+      margin-top: 40px;
+      padding: 22px 26px;
+      border-radius: 12px;
+      background: #ece6db;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      font-size: 13px;
+    }
+    @media (max-width: 860px) { .arch { grid-template-columns: 1fr 1fr; } }
+    .arch b { display: block; font-size: 13.5px; margin-bottom: 4px; }
+    .arch span { color: #5f584f; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <span class="eyebrow">Niche Travel Micro-Site Matrix · v2 Editorial & Directory</span>
+        <h1>小众旅行垂直微站 · 3 套高质感主题模板</h1>
+        <p class="sub">采用垂直旅游目录双栏架构（双月交互日历筛选 + 多维特征胶囊 + 区域可点击地图导览 + 速览抽屉），全站覆盖 6 大类目，支持「去哪儿旅行」带参直跳预订与站内定制咨询双闭环。</p>
+      </div>
+      <div class="pills">
+        <span class="pill">双月出行日历实时过滤</span>
+        <span class="pill">6 大旅行产品类目</span>
+        <span class="pill">去哪儿旅行国内版对接就绪</span>
+      </div>
+    </header>
+
+    <div class="grid">
+      <article class="card">
+            <a class="media" href="./demo-atelier/">
+              <img src="./demo-atelier/img/courtyard.jpg" alt="臻行 · 云南私享旅行">
+              <span class="theme-chip">THEME 01 · ATELIER 隐逸臻选</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#9a7332">黑金私享美学 · 通顶全宽轮播 · 压图日历筛选与顾问定制</div>
+              <a class="name" href="./demo-atelier/">臻行 · 云南私享旅行</a>
+              <p class="pos">为重视品质与私密的家庭和情侣，设计大理、丽江、沙溪的私家团与精品住宿。</p>
+              <div class="cats"><span class="cat">私家团</span><span class="cat">酒店</span><span class="cat">民宿</span><span class="cat">旅游线路</span><span class="cat">日游</span><span class="cat">跟团游</span></div>
+              <div class="actions">
+                <a class="btn" href="./demo-atelier/">进入站点首页</a>
+                <a class="deep" style="color:#9a7332" href="./demo-atelier/?start=2026-12-11&end=2026-12-15">体验 12 月出行日历筛选 →</a>
+              </div>
+            </div>
+          </article><article class="card">
+            <a class="media" href="./demo-trail/">
+              <img src="./demo-trail/img/trek.jpg" alt="野径 · 川西户外旅行">
+              <span class="theme-chip">THEME 02 · TRAIL 极境山野</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#c86428">深岩海拔仪表 · 机能等宽数据 · 徒步团期余位与雪季路书</div>
+              <a class="name" href="./demo-trail/">野径 · 川西户外旅行</a>
+              <p class="pos">专做川西轻徒步与户外线路：四姑娘山、贡嘎、新都桥，标注海拔、强度与季节，支持带狗出行。</p>
+              <div class="cats"><span class="cat">跟团游</span><span class="cat">旅游线路</span><span class="cat">私家团</span><span class="cat">日游</span><span class="cat">民宿</span><span class="cat">酒店</span></div>
+              <div class="actions">
+                <a class="btn" href="./demo-trail/">进入站点首页</a>
+                <a class="deep" style="color:#c86428" href="./demo-trail/?start=2026-12-10&end=2026-12-16">体验团期匹配与冬封过滤 →</a>
+              </div>
+            </div>
+          </article><article class="card">
+            <a class="media" href="./demo-local/">
+              <img src="./demo-local/img/food.jpg" alt="城迹 · 长沙玩乐">
+              <span class="theme-chip">THEME 03 · LOCAL 在地风物</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#c83e2b">城市画报拼贴 · 朱砂风物基因 · 街巷漫游与夜间食肆</div>
+              <a class="name" href="./demo-local/">城迹 · 长沙玩乐</a>
+              <p class="pos">长沙本地玩乐：夜宵美食小团、老街 Citywalk、亲子私家团和老巷民宿，人均几百块也能玩得明白。</p>
+              <div class="cats"><span class="cat">日游</span><span class="cat">民宿</span><span class="cat">跟团游</span><span class="cat">私家团</span><span class="cat">旅游线路</span><span class="cat">酒店</span></div>
+              <div class="actions">
+                <a class="btn" href="./demo-local/">进入站点首页</a>
+                <a class="deep" style="color:#c83e2b" href="./demo-local/?start=2026-12-12&end=2026-12-14">体验周末漫游与闭馆校验 →</a>
+              </div>
+            </div>
+          </article>
+    </div>
+
+    <section class="arch">
+      <div><b>双月日历实时可订引擎</b><span>自动匹配跟团团期余位、酒店民宿连住总价与满房日、线路季节性封山与场馆闭馆日。</span></div>
+      <div><b>双栏目录 + 区域导览地图</b><span>借鉴成熟垂直旅游站结构：左栏 3:2 产品瓦片与速览浮层，右栏可点选目的地地图与保障卡。</span></div>
+      <div><b>跨页状态记忆与去哪儿直连</b><span>所选入住/出发日期与人数自动穿透至详情页预订卡、咨询表单及去哪儿跳转链接参数。</span></div>
+      <div><b>一套源码驱动矩阵扩站</b><span>新增垂直站点仅需复制 <code>sites/&lt;id&gt;/</code> 配置与产品 JSON，后续可直接映射去哪儿 API。</span></div>
+    </section>
+  </div>
+</body>
+</html>

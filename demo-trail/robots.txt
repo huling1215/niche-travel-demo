@@ -1,0 +1,3 @@
+# 演示站点，禁止收录
+User-agent: *
+Disallow: /

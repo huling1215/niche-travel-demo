@@ -1,0 +1,40 @@
+# 城迹 · 长沙玩乐
+
+> 长沙本地玩乐：夜宵美食小团、老街 Citywalk、亲子私家团和老巷民宿，人均几百块也能玩得明白。
+
+城迹精选长沙日游、跟团游、私家团、民宿与酒店，写清人均花费、错峰时间和集合地点，可在去哪儿直接预订。
+
+## 主体与资质
+- 经营主体：示例本地生活科技有限公司
+- 旅行社业务经营许可证：本站不直接销售，产品经营方资质见去哪儿产品页
+- 预订方式：在线预订与支付由去哪儿旅行完成，旅游合同由去哪儿平台上的产品经营方签订；本站提供产品信息与行程咨询。
+- 联系电话：400-000-0002
+- 服务目的地：长沙、韶山、望城
+
+## 内容可信度说明
+- 每个产品页标注核验人、核验日期与信息来源；参考价以顾问确认与合同为准。
+- 部分文字由 AI 辅助整理，关键信息经人工核验。
+
+## 酒店
+- [湘江 · 橘洲江景酒店｜落地窗看橘子洲烟花](https://huling1215.github.io/niche-travel-demo/demo-local/hotels/juzhou-riverview/)：位于湘江东岸的江景酒店（演示），高楼层落地窗正对橘子洲，节假日可在房间看烟花（以官方燃放安排为准）；步行 8 分钟到地铁 1 号线，适合情侣和家庭。（参考价 ¥458 起/晚，核验于 2026-11-07）
+
+## 民宿
+- [潮宗街 · 云栖春晓老巷民宿｜步行 10 分钟到五一广场](https://huling1215.github.io/niche-travel-demo/demo-local/homestays/chaozong-alley-homestay/)：潮宗街麻石巷里的设计民宿（演示），共 6 间房，步行 10 分钟到五一广场、地铁 1 号线；闹中取静，适合想住在老街、出门就能吃夜宵的年轻人和情侣。（参考价 ¥268 起/晚，核验于 2026-11-06）
+
+## 旅游线路
+- [长沙 2 天 1 晚穷游路线｜人均 450 元吃喝住全包](https://huling1215.github.io/niche-travel-demo/demo-local/routes/changsha-budget-2d/)：长沙 2 天 1 晚自由行线路：住五一商圈青旅或经济民宿，Day1 老街 + 夜宵，Day2 岳麓山 + 橘子洲，全程地铁步行；人均约 450 元（住宿 + 餐饮 + 交通），去哪儿可订住宿+美食套餐。（参考价 ¥299 起/人，核验于 2026-11-09）
+
+## 日游
+- [长沙夜宵美食小团｜4 小时吃 8 家本地老店](https://huling1215.github.io/niche-travel-demo/demo-local/day-tours/changsha-night-food/)：长沙夜宵美食小团：19:00 坡子街集合，4 小时步行吃 8 家本地老店（臭豆腐、糖油粑粑、口味虾、米粉等），本地向导提前取号免排队，8 人小团，人均 199 元含全部试吃。（参考价 ¥199 起/人，核验于 2026-11-08）
+- [老长沙 Citywalk + 胶片随手拍｜3 小时走老街](https://huling1215.github.io/niche-travel-demo/demo-local/day-tours/old-changsha-citywalk/)：3 小时老长沙 Citywalk：太平街—西湖桥—潮宗街—福庆街，约 4km 步行，向导讲老街故事并教手机/胶片随手拍机位；含一卷胶片冲扫，6 人小团，人均 129 元。（参考价 ¥129 起/人，核验于 2026-11-02）
+
+## 私家团
+- [长沙 · 韶山亲子 3 天私家团｜博物院 + 红色研学 + 慢节奏](https://huling1215.github.io/niche-travel-demo/demo-local/private-tours/shaoshan-family-3d/)：长沙—韶山亲子 3 天私家团：湖南博物院马王堆、韶山毛泽东同志故居、橘子洲，专车专导、每天午休回酒店；适合带 5–12 岁孩子的家庭，2 大 1 小起订。（参考价 ¥1,680 起/人，核验于 2026-11-04）
+
+## 跟团游
+- [长沙 3 天 2 晚青年小团｜吃喝 + Citywalk + 橘子洲夜景](https://huling1215.github.io/niche-travel-demo/demo-local/group-tours/changsha-youth-3d/)：长沙 3 天 2 晚青年小团：老街 Citywalk、夜宵美食、橘子洲与岳麓山，住五一商圈精品民宿；12 人封顶、6 人成团，周五出发，人均 899 元起，不含往返大交通。（参考价 ¥899 起/人，核验于 2026-11-10）
+
+## 其他
+- [常见问题](https://huling1215.github.io/niche-travel-demo/demo-local/faq/)
+- [定制咨询](https://huling1215.github.io/niche-travel-demo/demo-local/inquiry/)
+- [关于与资质](https://huling1215.github.io/niche-travel-demo/demo-local/about/)

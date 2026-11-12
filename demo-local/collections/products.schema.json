@@ -1,0 +1,1173 @@
+{
+  "$ref": "#/definitions/products",
+  "definitions": {
+    "products": {
+      "anyOf": [
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "summary": {
+              "type": "string",
+              "minLength": 20,
+              "maxLength": 160
+            },
+            "destination": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "cover": {
+              "type": "string"
+            },
+            "coverAlt": {
+              "type": "string"
+            },
+            "highlights": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 2
+            },
+            "suitableFor": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "notSuitableFor": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "price": {
+              "type": "object",
+              "properties": {
+                "from": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "to": {
+                  "type": "number",
+                  "minimum": 0
+                },
+                "currency": {
+                  "type": "string",
+                  "default": "CNY"
+                },
+                "unit": {
+                  "type": "string"
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "from",
+                "unit"
+              ],
+              "additionalProperties": false
+            },
+            "includes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "excludes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "cancellation": {
+              "type": "string",
+              "minLength": 6
+            },
+            "faq": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "q": {
+                    "type": "string"
+                  },
+                  "a": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "q",
+                  "a"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 2
+            },
+            "reviews": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "author": {
+                    "type": "string"
+                  },
+                  "date": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      {
+                        "type": "integer",
+                        "format": "unix-time"
+                      }
+                    ]
+                  },
+                  "rating": {
+                    "type": "number",
+                    "minimum": 1,
+                    "maximum": 5
+                  },
+                  "text": {
+                    "type": "string"
+                  },
+                  "orderVerified": {
+                    "type": "boolean"
+                  }
+                },
+                "required": [
+                  "author",
+                  "date",
+                  "rating",
+                  "text",
+                  "orderVerified"
+                ],
+                "additionalProperties": false
+              },
+              "default": []
+            },
+            "supplier": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "kind": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "kind"
+              ],
+              "additionalProperties": false
+            },
+            "verification": {
+              "type": "object",
+              "properties": {
+                "verifiedBy": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "verifiedAt": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    {
+                      "type": "integer",
+                      "format": "unix-time"
+                    }
+                  ]
+                },
+                "source": {
+                  "type": "string",
+                  "minLength": 1
+                },
+                "aiAssisted": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "verifiedBy",
+                "verifiedAt",
+                "source",
+                "aiAssisted"
+              ],
+              "additionalProperties": false
+            },
+            "availability": {
+              "type": "object",
+              "properties": {
+                "availableMonths": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 1,
+                    "maximum": 12
+                  }
+                },
+                "closedWeekdays": {
+                  "type": "array",
+                  "items": {
+                    "type": "integer",
+                    "minimum": 0,
+                    "maximum": 6
+                  },
+                  "default": []
+                },
+                "blackoutDates": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  },
+                  "default": []
+                },
+                "leadDays": {
+                  "type": "integer",
+                  "minimum": 0,
+                  "default": 1
+                },
+                "note": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            },
+            "booking": {
+              "type": "object",
+              "properties": {
+                "provider": {
+                  "type": "string",
+                  "const": "qunar"
+                },
+                "productId": {
+                  "type": "string"
+                },
+                "url": {
+                  "type": "string",
+                  "format": "uri"
+                },
+                "priceSyncedAt": {
+                  "anyOf": [
+                    {
+                      "type": "string",
+                      "format": "date-time"
+                    },
+                    {
+                      "type": "string",
+                      "format": "date"
+                    },
+                    {
+                      "type": "integer",
+                      "format": "unix-time"
+                    }
+                  ]
+                }
+              },
+              "required": [
+                "provider",
+                "productId",
+                "url"
+              ],
+              "additionalProperties": false
+            },
+            "featured": {
+              "type": "boolean",
+              "default": false
+            },
+            "order": {
+              "type": "number",
+              "default": 100
+            },
+            "type": {
+              "type": "string",
+              "const": "hotel"
+            },
+            "address": {
+              "type": "string"
+            },
+            "checkIn": {
+              "type": "string"
+            },
+            "checkOut": {
+              "type": "string"
+            },
+            "rooms": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "bed": {
+                    "type": "string"
+                  },
+                  "size": {
+                    "type": "string"
+                  },
+                  "maxGuests": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0
+                  },
+                  "price": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "name",
+                  "bed",
+                  "size",
+                  "maxGuests",
+                  "price"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            },
+            "amenities": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              }
+            },
+            "petPolicy": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title",
+            "summary",
+            "destination",
+            "cover",
+            "coverAlt",
+            "highlights",
+            "suitableFor",
+            "notSuitableFor",
+            "price",
+            "includes",
+            "excludes",
+            "cancellation",
+            "faq",
+            "verification",
+            "type",
+            "address",
+            "checkIn",
+            "checkOut",
+            "rooms",
+            "amenities",
+            "petPolicy"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "$ref": "#/definitions/products/anyOf/0/properties/title"
+            },
+            "summary": {
+              "$ref": "#/definitions/products/anyOf/0/properties/summary"
+            },
+            "destination": {
+              "$ref": "#/definitions/products/anyOf/0/properties/destination"
+            },
+            "tags": {
+              "$ref": "#/definitions/products/anyOf/0/properties/tags"
+            },
+            "cover": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cover"
+            },
+            "coverAlt": {
+              "$ref": "#/definitions/products/anyOf/0/properties/coverAlt"
+            },
+            "highlights": {
+              "$ref": "#/definitions/products/anyOf/0/properties/highlights"
+            },
+            "suitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/suitableFor"
+            },
+            "notSuitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/notSuitableFor"
+            },
+            "price": {
+              "$ref": "#/definitions/products/anyOf/0/properties/price"
+            },
+            "includes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/includes"
+            },
+            "excludes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/excludes"
+            },
+            "cancellation": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cancellation"
+            },
+            "faq": {
+              "$ref": "#/definitions/products/anyOf/0/properties/faq"
+            },
+            "reviews": {
+              "$ref": "#/definitions/products/anyOf/0/properties/reviews"
+            },
+            "supplier": {
+              "$ref": "#/definitions/products/anyOf/0/properties/supplier"
+            },
+            "verification": {
+              "$ref": "#/definitions/products/anyOf/0/properties/verification"
+            },
+            "availability": {
+              "$ref": "#/definitions/products/anyOf/0/properties/availability"
+            },
+            "booking": {
+              "$ref": "#/definitions/products/anyOf/0/properties/booking"
+            },
+            "featured": {
+              "$ref": "#/definitions/products/anyOf/0/properties/featured"
+            },
+            "order": {
+              "$ref": "#/definitions/products/anyOf/0/properties/order"
+            },
+            "type": {
+              "type": "string",
+              "const": "homestay"
+            },
+            "address": {
+              "$ref": "#/definitions/products/anyOf/0/properties/address"
+            },
+            "checkIn": {
+              "$ref": "#/definitions/products/anyOf/0/properties/checkIn"
+            },
+            "checkOut": {
+              "$ref": "#/definitions/products/anyOf/0/properties/checkOut"
+            },
+            "rooms": {
+              "$ref": "#/definitions/products/anyOf/0/properties/rooms"
+            },
+            "amenities": {
+              "$ref": "#/definitions/products/anyOf/0/properties/amenities"
+            },
+            "petPolicy": {
+              "$ref": "#/definitions/products/anyOf/0/properties/petPolicy"
+            },
+            "rentalMode": {
+              "type": "string",
+              "enum": [
+                "整租",
+                "单间",
+                "整租/单间"
+              ]
+            },
+            "host": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "intro": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "name",
+                "intro"
+              ],
+              "additionalProperties": false
+            },
+            "experiences": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            }
+          },
+          "required": [
+            "title",
+            "summary",
+            "destination",
+            "cover",
+            "coverAlt",
+            "highlights",
+            "suitableFor",
+            "notSuitableFor",
+            "price",
+            "includes",
+            "excludes",
+            "cancellation",
+            "faq",
+            "verification",
+            "type",
+            "address",
+            "checkIn",
+            "checkOut",
+            "rooms",
+            "amenities",
+            "petPolicy",
+            "rentalMode",
+            "host"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "$ref": "#/definitions/products/anyOf/0/properties/title"
+            },
+            "summary": {
+              "$ref": "#/definitions/products/anyOf/0/properties/summary"
+            },
+            "destination": {
+              "$ref": "#/definitions/products/anyOf/0/properties/destination"
+            },
+            "tags": {
+              "$ref": "#/definitions/products/anyOf/0/properties/tags"
+            },
+            "cover": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cover"
+            },
+            "coverAlt": {
+              "$ref": "#/definitions/products/anyOf/0/properties/coverAlt"
+            },
+            "highlights": {
+              "$ref": "#/definitions/products/anyOf/0/properties/highlights"
+            },
+            "suitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/suitableFor"
+            },
+            "notSuitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/notSuitableFor"
+            },
+            "price": {
+              "$ref": "#/definitions/products/anyOf/0/properties/price"
+            },
+            "includes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/includes"
+            },
+            "excludes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/excludes"
+            },
+            "cancellation": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cancellation"
+            },
+            "faq": {
+              "$ref": "#/definitions/products/anyOf/0/properties/faq"
+            },
+            "reviews": {
+              "$ref": "#/definitions/products/anyOf/0/properties/reviews"
+            },
+            "supplier": {
+              "$ref": "#/definitions/products/anyOf/0/properties/supplier"
+            },
+            "verification": {
+              "$ref": "#/definitions/products/anyOf/0/properties/verification"
+            },
+            "availability": {
+              "$ref": "#/definitions/products/anyOf/0/properties/availability"
+            },
+            "booking": {
+              "$ref": "#/definitions/products/anyOf/0/properties/booking"
+            },
+            "featured": {
+              "$ref": "#/definitions/products/anyOf/0/properties/featured"
+            },
+            "order": {
+              "$ref": "#/definitions/products/anyOf/0/properties/order"
+            },
+            "type": {
+              "type": "string",
+              "const": "route"
+            },
+            "days": {
+              "type": "integer",
+              "exclusiveMinimum": 0
+            },
+            "intensity": {
+              "type": "string",
+              "enum": [
+                "休闲",
+                "轻度",
+                "中等",
+                "进阶"
+              ]
+            },
+            "altitude": {
+              "type": "string"
+            },
+            "season": {
+              "type": "string"
+            },
+            "itinerary": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "day": {
+                    "type": "integer",
+                    "exclusiveMinimum": 0
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "detail": {
+                    "type": "string"
+                  },
+                  "meals": {
+                    "type": "string"
+                  },
+                  "stay": {
+                    "type": "string"
+                  },
+                  "note": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "day",
+                  "title",
+                  "detail"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "title",
+            "summary",
+            "destination",
+            "cover",
+            "coverAlt",
+            "highlights",
+            "suitableFor",
+            "notSuitableFor",
+            "price",
+            "includes",
+            "excludes",
+            "cancellation",
+            "faq",
+            "verification",
+            "type",
+            "days",
+            "intensity",
+            "season",
+            "itinerary"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "$ref": "#/definitions/products/anyOf/0/properties/title"
+            },
+            "summary": {
+              "$ref": "#/definitions/products/anyOf/0/properties/summary"
+            },
+            "destination": {
+              "$ref": "#/definitions/products/anyOf/0/properties/destination"
+            },
+            "tags": {
+              "$ref": "#/definitions/products/anyOf/0/properties/tags"
+            },
+            "cover": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cover"
+            },
+            "coverAlt": {
+              "$ref": "#/definitions/products/anyOf/0/properties/coverAlt"
+            },
+            "highlights": {
+              "$ref": "#/definitions/products/anyOf/0/properties/highlights"
+            },
+            "suitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/suitableFor"
+            },
+            "notSuitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/notSuitableFor"
+            },
+            "price": {
+              "$ref": "#/definitions/products/anyOf/0/properties/price"
+            },
+            "includes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/includes"
+            },
+            "excludes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/excludes"
+            },
+            "cancellation": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cancellation"
+            },
+            "faq": {
+              "$ref": "#/definitions/products/anyOf/0/properties/faq"
+            },
+            "reviews": {
+              "$ref": "#/definitions/products/anyOf/0/properties/reviews"
+            },
+            "supplier": {
+              "$ref": "#/definitions/products/anyOf/0/properties/supplier"
+            },
+            "verification": {
+              "$ref": "#/definitions/products/anyOf/0/properties/verification"
+            },
+            "availability": {
+              "$ref": "#/definitions/products/anyOf/0/properties/availability"
+            },
+            "booking": {
+              "$ref": "#/definitions/products/anyOf/0/properties/booking"
+            },
+            "featured": {
+              "$ref": "#/definitions/products/anyOf/0/properties/featured"
+            },
+            "order": {
+              "$ref": "#/definitions/products/anyOf/0/properties/order"
+            },
+            "type": {
+              "type": "string",
+              "const": "day-tour"
+            },
+            "durationHours": {
+              "type": "number",
+              "exclusiveMinimum": 0
+            },
+            "startTimes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "meetingPoint": {
+              "type": "string"
+            },
+            "pickup": {
+              "type": "boolean"
+            },
+            "languages": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "maxGroup": {
+              "type": "integer",
+              "exclusiveMinimum": 0
+            },
+            "intensity": {
+              "type": "string",
+              "enum": [
+                "休闲",
+                "轻度",
+                "中等",
+                "进阶"
+              ]
+            },
+            "schedule": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "time": {
+                    "type": "string"
+                  },
+                  "title": {
+                    "type": "string"
+                  },
+                  "detail": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "time",
+                  "title",
+                  "detail"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            }
+          },
+          "required": [
+            "title",
+            "summary",
+            "destination",
+            "cover",
+            "coverAlt",
+            "highlights",
+            "suitableFor",
+            "notSuitableFor",
+            "price",
+            "includes",
+            "excludes",
+            "cancellation",
+            "faq",
+            "verification",
+            "type",
+            "durationHours",
+            "startTimes",
+            "meetingPoint",
+            "pickup",
+            "languages",
+            "maxGroup",
+            "intensity",
+            "schedule"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "$ref": "#/definitions/products/anyOf/0/properties/title"
+            },
+            "summary": {
+              "$ref": "#/definitions/products/anyOf/0/properties/summary"
+            },
+            "destination": {
+              "$ref": "#/definitions/products/anyOf/0/properties/destination"
+            },
+            "tags": {
+              "$ref": "#/definitions/products/anyOf/0/properties/tags"
+            },
+            "cover": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cover"
+            },
+            "coverAlt": {
+              "$ref": "#/definitions/products/anyOf/0/properties/coverAlt"
+            },
+            "highlights": {
+              "$ref": "#/definitions/products/anyOf/0/properties/highlights"
+            },
+            "suitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/suitableFor"
+            },
+            "notSuitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/notSuitableFor"
+            },
+            "price": {
+              "$ref": "#/definitions/products/anyOf/0/properties/price"
+            },
+            "includes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/includes"
+            },
+            "excludes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/excludes"
+            },
+            "cancellation": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cancellation"
+            },
+            "faq": {
+              "$ref": "#/definitions/products/anyOf/0/properties/faq"
+            },
+            "reviews": {
+              "$ref": "#/definitions/products/anyOf/0/properties/reviews"
+            },
+            "supplier": {
+              "$ref": "#/definitions/products/anyOf/0/properties/supplier"
+            },
+            "verification": {
+              "$ref": "#/definitions/products/anyOf/0/properties/verification"
+            },
+            "availability": {
+              "$ref": "#/definitions/products/anyOf/0/properties/availability"
+            },
+            "booking": {
+              "$ref": "#/definitions/products/anyOf/0/properties/booking"
+            },
+            "featured": {
+              "$ref": "#/definitions/products/anyOf/0/properties/featured"
+            },
+            "order": {
+              "$ref": "#/definitions/products/anyOf/0/properties/order"
+            },
+            "type": {
+              "type": "string",
+              "const": "private-tour"
+            },
+            "days": {
+              "$ref": "#/definitions/products/anyOf/2/properties/days"
+            },
+            "intensity": {
+              "$ref": "#/definitions/products/anyOf/2/properties/intensity"
+            },
+            "altitude": {
+              "$ref": "#/definitions/products/anyOf/2/properties/altitude"
+            },
+            "season": {
+              "$ref": "#/definitions/products/anyOf/2/properties/season"
+            },
+            "itinerary": {
+              "$ref": "#/definitions/products/anyOf/2/properties/itinerary"
+            },
+            "pricingTiers": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "pax": {
+                    "type": "string"
+                  },
+                  "price": {
+                    "type": "number",
+                    "minimum": 0
+                  }
+                },
+                "required": [
+                  "pax",
+                  "price"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            },
+            "vehicle": {
+              "type": "string"
+            },
+            "guideLanguages": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 1
+            },
+            "customizable": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            }
+          },
+          "required": [
+            "title",
+            "summary",
+            "destination",
+            "cover",
+            "coverAlt",
+            "highlights",
+            "suitableFor",
+            "notSuitableFor",
+            "price",
+            "includes",
+            "excludes",
+            "cancellation",
+            "faq",
+            "verification",
+            "type",
+            "days",
+            "intensity",
+            "season",
+            "itinerary",
+            "pricingTiers",
+            "vehicle",
+            "guideLanguages"
+          ],
+          "additionalProperties": false
+        },
+        {
+          "type": "object",
+          "properties": {
+            "title": {
+              "$ref": "#/definitions/products/anyOf/0/properties/title"
+            },
+            "summary": {
+              "$ref": "#/definitions/products/anyOf/0/properties/summary"
+            },
+            "destination": {
+              "$ref": "#/definitions/products/anyOf/0/properties/destination"
+            },
+            "tags": {
+              "$ref": "#/definitions/products/anyOf/0/properties/tags"
+            },
+            "cover": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cover"
+            },
+            "coverAlt": {
+              "$ref": "#/definitions/products/anyOf/0/properties/coverAlt"
+            },
+            "highlights": {
+              "$ref": "#/definitions/products/anyOf/0/properties/highlights"
+            },
+            "suitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/suitableFor"
+            },
+            "notSuitableFor": {
+              "$ref": "#/definitions/products/anyOf/0/properties/notSuitableFor"
+            },
+            "price": {
+              "$ref": "#/definitions/products/anyOf/0/properties/price"
+            },
+            "includes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/includes"
+            },
+            "excludes": {
+              "$ref": "#/definitions/products/anyOf/0/properties/excludes"
+            },
+            "cancellation": {
+              "$ref": "#/definitions/products/anyOf/0/properties/cancellation"
+            },
+            "faq": {
+              "$ref": "#/definitions/products/anyOf/0/properties/faq"
+            },
+            "reviews": {
+              "$ref": "#/definitions/products/anyOf/0/properties/reviews"
+            },
+            "supplier": {
+              "$ref": "#/definitions/products/anyOf/0/properties/supplier"
+            },
+            "verification": {
+              "$ref": "#/definitions/products/anyOf/0/properties/verification"
+            },
+            "availability": {
+              "$ref": "#/definitions/products/anyOf/0/properties/availability"
+            },
+            "booking": {
+              "$ref": "#/definitions/products/anyOf/0/properties/booking"
+            },
+            "featured": {
+              "$ref": "#/definitions/products/anyOf/0/properties/featured"
+            },
+            "order": {
+              "$ref": "#/definitions/products/anyOf/0/properties/order"
+            },
+            "type": {
+              "type": "string",
+              "const": "group-tour"
+            },
+            "days": {
+              "$ref": "#/definitions/products/anyOf/2/properties/days"
+            },
+            "intensity": {
+              "$ref": "#/definitions/products/anyOf/2/properties/intensity"
+            },
+            "altitude": {
+              "$ref": "#/definitions/products/anyOf/2/properties/altitude"
+            },
+            "season": {
+              "$ref": "#/definitions/products/anyOf/2/properties/season"
+            },
+            "itinerary": {
+              "$ref": "#/definitions/products/anyOf/2/properties/itinerary"
+            },
+            "departures": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "date": {
+                    "anyOf": [
+                      {
+                        "type": "string",
+                        "format": "date-time"
+                      },
+                      {
+                        "type": "string",
+                        "format": "date"
+                      },
+                      {
+                        "type": "integer",
+                        "format": "unix-time"
+                      }
+                    ]
+                  },
+                  "price": {
+                    "type": "number",
+                    "minimum": 0
+                  },
+                  "seatsLeft": {
+                    "type": "integer",
+                    "minimum": 0
+                  },
+                  "status": {
+                    "type": "string",
+                    "enum": [
+                      "报名中",
+                      "即将成团",
+                      "已成团",
+                      "已满",
+                      "取消"
+                    ]
+                  }
+                },
+                "required": [
+                  "date",
+                  "price",
+                  "seatsLeft",
+                  "status"
+                ],
+                "additionalProperties": false
+              },
+              "minItems": 1
+            },
+            "minGroup": {
+              "type": "integer",
+              "exclusiveMinimum": 0
+            },
+            "maxGroup": {
+              "type": "integer",
+              "exclusiveMinimum": 0
+            },
+            "meetingPoint": {
+              "type": "string"
+            },
+            "notFormedPolicy": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title",
+            "summary",
+            "destination",
+            "cover",
+            "coverAlt",
+            "highlights",
+            "suitableFor",
+            "notSuitableFor",
+            "price",
+            "includes",
+            "excludes",
+            "cancellation",
+            "faq",
+            "verification",
+            "type",
+            "days",
+            "intensity",
+            "season",
+            "itinerary",
+            "departures",
+            "minGroup",
+            "maxGroup",
+            "meetingPoint",
+            "notFormedPolicy"
+          ],
+          "additionalProperties": false
+        }
+      ]
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}
