@@ -1,0 +1,460 @@
+{
+  "$ref": "#/definitions/guides",
+  "definitions": {
+    "guides": {
+      "type": "object",
+      "properties": {
+        "slug": {
+          "type": "string",
+          "minLength": 3
+        },
+        "code": {
+          "type": "string"
+        },
+        "docType": {
+          "type": "string",
+          "enum": [
+            "decision-vs",
+            "best-list",
+            "itinerary-plan",
+            "pricing-avoid"
+          ],
+          "default": "decision-vs"
+        },
+        "publishBatch": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 4,
+          "default": 1
+        },
+        "title": {
+          "type": "string",
+          "minLength": 8
+        },
+        "eyebrow": {
+          "type": "string"
+        },
+        "categoryLabel": {
+          "type": "string"
+        },
+        "targetQuery": {
+          "type": "string"
+        },
+        "routeSkeleton": {
+          "type": "string"
+        },
+        "personas": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "interests": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "daysLabel": {
+          "type": "string"
+        },
+        "daysCount": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 20
+        },
+        "pace": {
+          "type": "string",
+          "enum": [
+            "松弛躺平",
+            "经典平衡",
+            "进阶高密"
+          ]
+        },
+        "transportMode": {
+          "type": "string"
+        },
+        "budgetTier": {
+          "type": "string",
+          "enum": [
+            "高性价比",
+            "品质优选",
+            "高定私享"
+          ]
+        },
+        "priceRange": {
+          "type": "string"
+        },
+        "priceMin": {
+          "type": "number",
+          "minimum": 0
+        },
+        "priceUnit": {
+          "type": "string",
+          "default": "/人"
+        },
+        "priceCheckedAt": {
+          "type": "string",
+          "default": "2026-11"
+        },
+        "destinations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "collections": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "cover": {
+          "type": "string"
+        },
+        "coverAlt": {
+          "type": "string"
+        },
+        "directAnswer": {
+          "type": "string",
+          "minLength": 40
+        },
+        "oneLineVerdict": {
+          "type": "string"
+        },
+        "who": {
+          "type": "string"
+        },
+        "fit": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "unfit": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "publishedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "updatedAt": {
+          "anyOf": [
+            {
+              "type": "string",
+              "format": "date-time"
+            },
+            {
+              "type": "string",
+              "format": "date"
+            },
+            {
+              "type": "integer",
+              "format": "unix-time"
+            }
+          ]
+        },
+        "author": {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "role": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "role"
+          ],
+          "additionalProperties": false
+        },
+        "comparisonTable": {
+          "type": "object",
+          "properties": {
+            "headers": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "minItems": 3
+            },
+            "rows": {
+              "type": "array",
+              "items": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              },
+              "minItems": 3
+            },
+            "caption": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "headers",
+            "rows"
+          ],
+          "additionalProperties": false
+        },
+        "dayPlan": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "day": {
+                "type": "string"
+              },
+              "route": {
+                "type": "string"
+              },
+              "playAndShot": {
+                "type": "string"
+              },
+              "eatAndStay": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "day",
+              "route",
+              "playAndShot",
+              "eatAndStay"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "stayDesign": {
+          "type": "object",
+          "properties": {
+            "role": {
+              "type": "string",
+              "enum": [
+                "酒店即目的地",
+                "观景机位房",
+                "交通补给站"
+              ]
+            },
+            "summary": {
+              "type": "string"
+            },
+            "preferred": {
+              "type": "string"
+            },
+            "backup": {
+              "type": "string"
+            },
+            "roomLogic": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "role",
+            "summary",
+            "preferred",
+            "backup",
+            "roomLogic"
+          ],
+          "additionalProperties": false
+        },
+        "feeLogic": {
+          "type": "object",
+          "properties": {
+            "includes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "excludes": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "addOns": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "seasonFactor": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "budgetSplit": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "label": {
+                "type": "string"
+              },
+              "pct": {
+                "type": "number",
+                "minimum": 1,
+                "maximum": 100
+              },
+              "amount": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "label",
+              "pct",
+              "amount"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "sections": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "heading": {
+                "type": "string"
+              },
+              "body": {
+                "type": "string"
+              },
+              "bullets": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            },
+            "required": [
+              "heading",
+              "body"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "methodology": {
+          "type": "string"
+        },
+        "fieldNotes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "deliverables": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "socialSeed": {
+          "type": "object",
+          "properties": {
+            "title": {
+              "type": "string"
+            },
+            "tags": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "default": []
+            },
+            "coverIdea": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "title"
+          ],
+          "additionalProperties": false
+        },
+        "pitfalls": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "relatedProductIds": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "faq": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "q": {
+                "type": "string"
+              },
+              "a": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "q",
+              "a"
+            ],
+            "additionalProperties": false
+          },
+          "default": []
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "slug",
+        "title",
+        "eyebrow",
+        "categoryLabel",
+        "cover",
+        "coverAlt",
+        "directAnswer",
+        "updatedAt",
+        "author",
+        "comparisonTable",
+        "sections"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

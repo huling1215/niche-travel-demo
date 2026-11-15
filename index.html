@@ -1,0 +1,625 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>小众旅行 200 站微站矩阵母框架 · 17 大垂直品类示范站总览（PC / 手机 H5 / 微信小程序 / 去哪儿直连）</title>
+  <meta name="robots" content="noindex">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Noto Sans SC', sans-serif;
+      background: #f5f3ee;
+      color: #181614;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    .wrap { width: min(1320px, 100% - 32px); margin: 0 auto; padding: 40px 0 76px; }
+    .top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 24px;
+      flex-wrap: wrap;
+      padding-bottom: 24px;
+      border-bottom: 1px solid rgba(24, 22, 20, .11);
+    }
+    .eyebrow {
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: .15em;
+      text-transform: uppercase;
+      color: #8a5a36;
+      margin-bottom: 8px;
+      display: block;
+    }
+    h1 {
+      margin: 0;
+      font-family: 'Songti SC', 'Noto Serif SC', Georgia, serif;
+      font-size: clamp(25px, 3.2vw, 38px);
+      font-weight: 600;
+      letter-spacing: -.01em;
+      line-height: 1.22;
+    }
+    .sub {
+      margin: 10px 0 0;
+      color: #57524c;
+      max-width: 76ch;
+      font-size: 14.5px;
+    }
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+    @media (max-width: 760px) { .kpi-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    .kpi {
+      background: #ffffff;
+      border: 1px solid rgba(24, 22, 20, .09);
+      border-radius: 12px;
+      padding: 13px 16px;
+    }
+    .kpi b { display: block; font-size: 21px; font-weight: 700; color: #181614; line-height: 1.2; }
+    .kpi span { font-size: 12.2px; color: #655e56; }
+    .filter-bar {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 22px;
+      align-items: center;
+    }
+    .filter-btn {
+      appearance: none;
+      border: 1px solid rgba(24, 22, 20, .14);
+      background: #ffffff;
+      color: #36322e;
+      font-size: 13px;
+      font-weight: 600;
+      padding: 8px 15px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: all .16s ease;
+    }
+    .filter-btn:hover { border-color: #181614; }
+    .filter-btn.is-active {
+      background: #181614;
+      color: #ffffff;
+      border-color: #181614;
+    }
+    .grid {
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 24px;
+    }
+    @media (max-width: 1080px) { .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 700px) { .grid { grid-template-columns: 1fr; } }
+    .card {
+      background: #ffffff;
+      border: 1px solid rgba(24, 22, 20, .1);
+      border-radius: 15px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 16px 38px -24px rgba(24, 22, 20, .18);
+      transition: transform .22s cubic-bezier(.22,1,.36,1), box-shadow .22s;
+    }
+    .card[hidden] { display: none !important; }
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 24px 48px -22px rgba(24, 22, 20, .26);
+    }
+    .media { position: relative; aspect-ratio: 16 / 9.5; overflow: hidden; display: block; background: #e8e4dc; }
+    .media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .6s cubic-bezier(.22,1,.36,1); }
+    .card:hover .media img { transform: scale(1.04); }
+    .theme-chip {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      background: rgba(15, 20, 26, .82);
+      backdrop-filter: blur(8px);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      padding: 4.5px 10px;
+      border-radius: 999px;
+      max-width: calc(100% - 24px);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .perspective-chip {
+      position: absolute;
+      bottom: 10px;
+      right: 10px;
+      background: rgba(255, 255, 255, .93);
+      color: #181614;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3.5px 9px;
+      border-radius: 999px;
+    }
+    .body { padding: 18px 20px 20px; display: flex; flex-direction: column; gap: 9px; flex: 1; }
+    .vibe { font-size: 12.2px; font-weight: 600; letter-spacing: .01em; line-height: 1.45; }
+    .name {
+      font-family: 'Songti SC', 'Noto Serif SC', Georgia, serif;
+      font-size: 20px;
+      font-weight: 600;
+      margin: 0;
+      color: #181614;
+      text-decoration: none;
+      line-height: 1.3;
+    }
+    .pos {
+      font-size: 13.2px;
+      color: #5b554e;
+      margin: 0;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .cats { display: flex; flex-wrap: wrap; gap: 5px; margin-top: 2px; }
+    .cat {
+      font-size: 11px;
+      padding: 2.5px 8px;
+      border-radius: 5px;
+      background: #f2efe9;
+      color: #463f38;
+      font-weight: 500;
+    }
+    .actions {
+      margin-top: auto;
+      padding-top: 13px;
+      border-top: 1px solid rgba(24, 22, 20, .08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .btn-group { display: flex; gap: 6px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 13px;
+      border-radius: 8px;
+      background: #181614;
+      color: #fff;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+    }
+    .btn-mp {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 11px;
+      border-radius: 8px;
+      background: #e7f5ed;
+      color: #0e6b3d;
+      border: 1px solid rgba(14, 107, 61, .22);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 600;
+    }
+    .btn:hover, .btn-mp:hover { opacity: .88; }
+    .deep {
+      font-size: 12px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .deep:hover { text-decoration: underline; }
+    .arch {
+      margin-top: 36px;
+      padding: 24px 26px;
+      border-radius: 14px;
+      background: #eae4d8;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      font-size: 13px;
+    }
+    @media (max-width: 900px) { .arch { grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 560px) { .arch { grid-template-columns: 1fr; } }
+    .arch b { display: block; font-size: 13.8px; margin-bottom: 4px; }
+    .arch span { color: #595249; }
+    code { background: rgba(24,22,20,.08); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="top">
+      <div>
+        <span class="eyebrow">小众旅行 200 站微站矩阵母框架 · 17 大垂直品类 × 方案导读树 × GEO/SEO 全链路预览</span>
+        <h1>1 套共享母库驱动 17 大垂直品类微站 · 预览控制台</h1>
+        <p class="sub">每站已全量填充 <strong>10 篇独占深度决策横评与不绕路私家团方案（共 170 篇静态页）</strong>，配备<strong>交互式 5 维方案导读树（<code>/guides/</code>）</strong>与防 AI 幻觉的<strong>带日期品牌核验事实表（<code>/facts/</code> + <code>/facts.json</code> + <code>/llms.txt</code>）</strong>，全链路内置<strong>「去哪儿旅行」购买跳转入口</strong>与微信小程序 <code>&lt;web-view&gt;</code> 套壳兼容。</p>
+      </div>
+    </header>
+
+    <div class="kpi-row">
+      <div class="kpi"><b>17 个垂直微站</b><span>覆盖冰雪/乐园/研学/徒步/浪潜/私汤等主轴</span></div>
+      <div class="kpi"><b>170 篇方案与横评</b><span>每站 10 篇零重复 · 含 5 维交互式方案导读树</span></div>
+      <div class="kpi"><b>61 款实测 SKU</b><span>100% 挂载去哪儿直订跳转与 <code>/facts/</code> 核验表</span></div>
+      <div class="kpi"><b>SEO + GEO 满配</b><span>原生 HTML 直出 · 纯净 Schema · AI 爬虫与 IndexNow 就绪</span></div>
+    </div>
+
+    <nav class="filter-bar" aria-label="按垂直赛道筛选示范微站">
+      <button type="button" class="filter-btn is-active" data-filter="all">全部垂直品类 (17)</button>
+      <button type="button" class="filter-btn" data-filter="focus">★ 点名核验 + 本轮新增拓展 (11)</button>
+      <button type="button" class="filter-btn" data-filter="sport">冰雪 · 冲浪 · 骑行 · 徒步 · 越野 · 高尔夫 (6)</button>
+      <button type="button" class="filter-btn" data-filter="family">亲子乐园 · 研学 · 携宠 · 适老 (4)</button>
+      <button type="button" class="filter-btn" data-filter="stay">私汤康养 · 野奢露营 · 高定院落 (3)</button>
+      <button type="button" class="filter-btn" data-filter="culture">非遗寻茶 · 暗夜观星 · 纪实旅拍 · 城市风物 (4)</button>
+    </nav>
+
+    <div class="grid" id="site-grid">
+      <article class="card" data-group="sport" data-focus="1">
+            <a class="media" href="./demo-ski/">
+              <img src="./demo-ski/img/ski-powder.jpg" alt="雪迹 · 北纬41°与高山粉雪住滑志" loading="lazy">
+              <span class="theme-chip">SITE 01 · 冰雪滑雪（NEW · 北纬41°与高山粉雪）</span>
+              <span class="perspective-chip">雪迹 PowderClub · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#026aa7">冰川晴雪俱乐部风 · 步行≤50m真滑进滑出 + 国职儿童托管 + 阿勒泰四驱钉胎</div>
+              <a class="name" href="./demo-ski/">雪迹 · 北纬41°与高山粉雪住滑志</a>
+              <p class="pos">专注长白山北纬 41° 真滑进滑出与新疆阿勒泰高山粉雪：逐店实测雪具厅到索道步行米数、每晚雪票雪具包含口径、四驱雪地胎接驳与国职儿童独立托管。</p>
+              <div class="cats"><span class="cat">酒店</span><span class="cat">私家团</span><span class="cat">日游</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-ski/">进入微站</a>
+                  <a class="btn-mp" href="./demo-ski/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-ski/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#026aa7" href="./demo-ski/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="family" data-focus="1">
+            <a class="media" href="./demo-park/">
+              <img src="./demo-park/img/family-park.jpg" alt="奇趣岛 · 免排队亲子主题乐园指南" loading="lazy">
+              <span class="theme-chip">SITE 02 · 亲子乐园（NEW · 早享免排与恒温水世界）</span>
+              <span class="perspective-chip">奇趣岛 JoyPark · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#0077b6">海湾奇趣杂志风 · 提前1h早享免排队 + 电梯回房午睡 + 按身高分龄动线</div>
+              <a class="name" href="./demo-park/">奇趣岛 · 免排队亲子主题乐园指南</a>
+              <p class="pos">专为 1.5–12 岁遛娃家庭严选：覆盖珠海横琴双园与三亚海棠湾恒温水世界，一价打包「提前 1 小时早享免排队 + 无限次进出回房午睡 + 按身高分龄动线」。</p>
+              <div class="cats"><span class="cat">酒店</span><span class="cat">私家团</span><span class="cat">日游</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-park/">进入微站</a>
+                  <a class="btn-mp" href="./demo-park/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-park/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#0077b6" href="./demo-park/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="family" data-focus="1">
+            <a class="media" href="./demo-study/">
+              <img src="./demo-study/img/rainforest-study.jpg" alt="博物志 · 自然科考与人文美育研学" loading="lazy">
+              <span class="theme-chip">SITE 03 · 研学体验（NEW · 中科院雨林与敦煌文博）</span>
+              <span class="perspective-chip">博物志 TerraStudy · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#1f6347">雨林琥珀学术风 · 1:5硕博双导师 + 连住植物园夜观 + 锁莫高窟A类全票</div>
+              <a class="name" href="./demo-study/">博物志 · 自然科考与人文美育研学</a>
+              <p class="pos">拒绝“穿营服拉横幅拍照”的伪研学：依托中科院勐仑热带植物园与敦煌石窟研究院体系，严守 1:5 学术+生活双导师配比、真实验课题与分龄单飞/亲子成营。</p>
+              <div class="cats"><span class="cat">跟团游</span><span class="cat">私家团</span><span class="cat">日游</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-study/">进入微站</a>
+                  <a class="btn-mp" href="./demo-study/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-study/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#1f6347" href="./demo-study/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="sport" data-focus="1">
+            <a class="media" href="./demo-trail/">
+              <img src="./demo-trail/img/trek.jpg" alt="野径 · 川西户外旅行" loading="lazy">
+              <span class="theme-chip">SITE 04 · 户外徒步（已有 · 川西轻徒步与高反阶梯）</span>
+              <span class="perspective-chip">野径 WILDPATH · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#c86428">深岩海拔仪表风 · 四姑娘山/康定/新都桥/贡嘎 · 过夜海拔与供氧山居全量化</div>
+              <a class="name" href="./demo-trail/">野径 · 川西户外旅行</a>
+              <p class="pos">专做川西轻徒步与雪山阶梯路线：四姑娘山、康定、新都桥、贡嘎，量化标注过夜海拔、单日爬升、真弥散供氧与90分钟下撤方案。</p>
+              <div class="cats"><span class="cat">跟团游</span><span class="cat">私家团</span><span class="cat">民宿</span><span class="cat">酒店</span><span class="cat">日游</span><span class="cat">旅游线路</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-trail/">进入微站</a>
+                  <a class="btn-mp" href="./demo-trail/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-trail/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#c86428" href="./demo-trail/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="sport" data-focus="1">
+            <a class="media" href="./demo-surf/">
+              <img src="./demo-surf/img/surf-bay.jpg" alt="浪迹 · 海南冲浪进阶与PADI考证志" loading="lazy">
+              <span class="theme-chip">SITE 05 · 冲浪潜水（NEW · 对标 Zurf 浪点与PADI考证）</span>
+              <span class="perspective-chip">浪迹 WaveDive · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#007f99">碧海浪花波浪首屏 · 万宁日月湾ISA教练1v2视频纠姿 + 分界洲PADI五星考证</div>
+              <a class="name" href="./demo-surf/">浪迹 · 海南冲浪进阶与PADI考证志</a>
+              <p class="pos">专注万宁日月湾 1v2 冲浪教学与陵水分界洲岛 PADI OW/AOW 国际潜水考证：严拒景区“按头式体验潜”，全含 GoPro/无人机浪点跟拍视频复盘与减压禁飞排期。</p>
+              <div class="cats"><span class="cat">跟团游</span><span class="cat">私家团</span><span class="cat">日游</span><span class="cat">酒店</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-surf/">进入微站</a>
+                  <a class="btn-mp" href="./demo-surf/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-surf/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#007f99" href="./demo-surf/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="stay" data-focus="1">
+            <a class="media" href="./demo-onsen/">
+              <img src="./demo-onsen/img/onsen-courtyard.jpg" alt="汤治社 · 天然原汤入户与森林康养" loading="lazy">
+              <span class="theme-chip">SITE 06 · 私汤康养（NEW · 火山真原汤与竹海汤治）</span>
+              <span class="perspective-chip">汤治社 YuAn · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#8c4227">桧木暖汤东方衬线风 · 腾冲58°C火山碳酸原汤 + 安吉悬崖竹汤 + 一泊二食</div>
+              <a class="name" href="./demo-onsen/">汤治社 · 天然原汤入户与森林康养</a>
+              <p class="pos">向“锅炉加热自来水假温泉”说不：严选云南腾冲火山碳酸/硫磺真原汤与安吉万亩竹海半山私汤，逐院公示水源属性、一客一换消杀与一泊二食山野晚宴。</p>
+              <div class="cats"><span class="cat">民宿</span><span class="cat">酒店</span><span class="cat">私家团</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-onsen/">进入微站</a>
+                  <a class="btn-mp" href="./demo-onsen/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-onsen/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#8c4227" href="./demo-onsen/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="stay" data-focus="1">
+            <a class="media" href="./demo-glamp/">
+              <img src="./demo-glamp/img/glamping-tent.jpg" alt="旷野宿 · 独立卫浴地暖野奢露营志" loading="lazy">
+              <span class="theme-chip">SITE 07 · 野奢露营（NEW · 100%帐内独卫地暖营地）</span>
+              <span class="perspective-chip">旷野宿 CanvasCamp · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#2e5c3e">松林帆布自然风 · 莫干山脊猎游帐 + 安吉玻璃溪松林营 + 木火铸铁锅晚宴</div>
+              <a class="name" href="./demo-glamp/">旷野宿 · 独立卫浴地暖野奢露营志</a>
+              <p class="pos">只收录「100% 帐内独立干湿分离卫浴 + 冷暖空调地暖 + 荒野木火晚宴」的高规格 Glamping 营地：拎包住进莫干山脊与安吉松林溪谷，体面享受篝火星空。</p>
+              <div class="cats"><span class="cat">民宿</span><span class="cat">酒店</span><span class="cat">私家团</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-glamp/">进入微站</a>
+                  <a class="btn-mp" href="./demo-glamp/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-glamp/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#2e5c3e" href="./demo-glamp/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="sport" data-focus="1">
+            <a class="media" href="./demo-cycle/">
+              <img src="./demo-cycle/img/lake-cycling.jpg" alt="破风驿 · 环湖绿道4+2骑行与电助力漫游" loading="lazy">
+              <span class="theme-chip">SITE 08 · 环湖骑行（NEW · 4+2保障车与电助力漫游）</span>
+              <span class="perspective-chip">破风驿 PelotonGo · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#2b7a2b">破风绿道俱乐部风 · 千岛湖138km收容车护航 + 单车入房酒店 + 洱海E-Bike</div>
+              <a class="name" href="./demo-cycle/">破风驿 · 环湖绿道4+2骑行与电助力漫游</a>
+              <p class="pos">兼顾严肃公路车拉练与零压力电助力漫游：深耕千岛湖 138km 封闭绿道与大理洱海无车生态廊道，标配「按身高尺码调车 + 4+2 收容保障车 + 爱车推入房友好酒店」。</p>
+              <div class="cats"><span class="cat">跟团游</span><span class="cat">酒店</span><span class="cat">日游</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-cycle/">进入微站</a>
+                  <a class="btn-mp" href="./demo-cycle/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-cycle/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#2b7a2b" href="./demo-cycle/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="culture" data-focus="1">
+            <a class="media" href="./demo-astro/">
+              <img src="./demo-astro/img/desert-stars.jpg" alt="星野台 · 波特尔暗夜保护区观星指南" loading="lazy">
+              <span class="theme-chip">SITE 09 · 暗夜观星（NEW · 波特尔1–2级银河追星）</span>
+              <span class="perspective-chip">星野台 Starlight · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#3730a3">星野天文遥测风 · 中卫腾格里腹地球幕 + 冷湖Bortle1级雅丹 + 200mm赤道仪</div>
+              <a class="name" href="./demo-astro/">星野台 · 波特尔暗夜保护区观星指南</a>
+              <p class="pos">用真实天文学标准筛除“公路边射灯假星空营”：直连宁夏腾格里腹地（Bortle 2 级）与青海冷湖天文台暗夜区（Bortle 1 级），前置核验农历月相、红光灯控与大口径赤道仪望远镜导览。</p>
+              <div class="cats"><span class="cat">酒店</span><span class="cat">私家团</span><span class="cat">日游</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-astro/">进入微站</a>
+                  <a class="btn-mp" href="./demo-astro/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-astro/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#3730a3" href="./demo-astro/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="culture" data-focus="1">
+            <a class="media" href="./demo-craft/">
+              <img src="./demo-craft/img/ceramic-craft.jpg" alt="造物集 · 景德镇私窑造器与古茶山寻源" loading="lazy">
+              <span class="theme-chip">SITE 10 · 非遗寻茶（NEW · 景德镇私窑与景迈古茶）</span>
+              <span class="perspective-chip">造物集 Kiln & Tea · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#1f4e8c">青花瓷韵画报拼贴风 · 三宝山院1320°C原矿烧制包邮 + 普洱景迈山压茶饼</div>
+              <a class="name" href="./demo-craft/">造物集 · 景德镇私窑造器与古茶山寻源</a>
+              <p class="pos">绕开商业街“38元拉坯、380元烧制加价”与暗室买茶局：深入景德镇三宝蓬溪谷私窑与普洱景迈千年古茶山，一价全包「原矿泥拉坯青花 + 1,320°C 高温烧成顺丰包邮」。</p>
+              <div class="cats"><span class="cat">民宿</span><span class="cat">私家团</span><span class="cat">日游</span><span class="cat">旅游线路</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-craft/">进入微站</a>
+                  <a class="btn-mp" href="./demo-craft/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-craft/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#1f4e8c" href="./demo-craft/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="sport" data-focus="1">
+            <a class="media" href="./demo-overland/">
+              <img src="./demo-overland/img/overland-road.jpg" alt="纵横线 · 独库公路与川西硬派四驱自驾" loading="lazy">
+              <span class="theme-chip">SITE 11 · 越野自驾（NEW · 独库公路与G318硬派四驱）</span>
+              <span class="perspective-chip">纵横线 OverlandX · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#b8431e">红岩峡谷硬派仪表风 · 实车锁死坦克300 + 0元停运费全险 + 免坐区间车进草原</div>
+              <a class="name" href="./demo-overland/">纵横线 · 独库公路与川西硬派四驱自驾</a>
+              <p class="pos">专注中国史诗级景观公路硬派穿越：实车锁死带大梁四驱坦克 300 / 牧马人，打包「百万车损免停运费全险 + 景区免换乘VIP自驾票 + 领航救援头车 + 大疆无人机跟拍」。</p>
+              <div class="cats"><span class="cat">私家团</span><span class="cat">跟团游</span><span class="cat">旅游线路</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-overland/">进入微站</a>
+                  <a class="btn-mp" href="./demo-overland/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-overland/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#b8431e" href="./demo-overland/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="sport" data-focus="0">
+            <a class="media" href="./demo-golf/">
+              <img src="./demo-golf/img/golf-fairway.jpg" alt="果岭荟 · 海南与春城高尔夫住打指南" loading="lazy">
+              <span class="theme-chip">SITE 12 · 高尔夫住打（已有 · 海滨与春城锦标赛球场）</span>
+              <span class="perspective-chip">果岭荟 TeeClub · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#0d8256">晴空果岭俱乐部风 · 18洞果岭+球童+球车一价全含 + 顺丰球包免费代收</div>
+              <a class="name" href="./demo-golf/">果岭荟 · 海南与春城高尔夫住打指南</a>
+              <p class="pos">专注海南暖冬海滨球场与昆明 22°C 避暑果岭：一价透明列明「18 洞果岭 + 球童 + 球车 + 更衣柜」，实时锁黄金早场 Tee Time 并支持顺丰球包免费代收。</p>
+              <div class="cats"><span class="cat">私家团</span><span class="cat">酒店</span><span class="cat">日游</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-golf/">进入微站</a>
+                  <a class="btn-mp" href="./demo-golf/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-golf/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#0d8256" href="./demo-golf/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="family" data-focus="0">
+            <a class="media" href="./demo-paw/">
+              <img src="./demo-paw/img/pet-meadow.jpg" alt="爪印去野 · 携宠撒欢旅行志" loading="lazy">
+              <span class="theme-chip">SITE 13 · 宠物携行（已有 · 对标 BringFido 携宠去野）</span>
+              <span class="perspective-chip">爪印 PawGo · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#0277bd">海岸晴空携宠风 · 逐店电话实核38kg大狗准入、500㎡围栏草坪与兽医坐标</div>
+              <a class="name" href="./demo-paw/">爪印去野 · 携宠撒欢旅行志</a>
+              <p class="pos">专为带狗狗出门的家长严选：横跨川西雪山草甸与大理田园院落，100% 电话核实允许犬只体重上限、双道门围栏草坪、清洁费明细与沿途兽医坐标。</p>
+              <div class="cats"><span class="cat">民宿</span><span class="cat">酒店</span><span class="cat">私家团</span><span class="cat">日游</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-paw/">进入微站</a>
+                  <a class="btn-mp" href="./demo-paw/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-paw/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#0277bd" href="./demo-paw/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="family" data-focus="0">
+            <a class="media" href="./demo-family/">
+              <img src="./demo-family/img/puer.jpg" alt="慢伴 · 带父母暖冬慢旅行" loading="lazy">
+              <span class="theme-chip">SITE 14 · 适老慢游（已有 · 带55–75岁父母暖冬慢行）</span>
+              <span class="perspective-chip">慢伴 SlowKin · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#21574e">东方青瓷人文风 · 严控过夜海拔≤2,600m、日均行车≤2.5h与一楼免爬楼院落</div>
+              <a class="name" href="./demo-family/">慢伴 · 带父母暖冬慢旅行</a>
+              <p class="pos">专为带 55–75 岁父母出行的儿女严选：横跨云南暖冬、湘中人文与川西低海拔，严控单日车程 ≤2.5h、少台阶地暖房与零购物催促。</p>
+              <div class="cats"><span class="cat">私家团</span><span class="cat">酒店</span><span class="cat">民宿</span><span class="cat">跟团游</span><span class="cat">日游</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-family/">进入微站</a>
+                  <a class="btn-mp" href="./demo-family/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-family/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#21574e" href="./demo-family/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="stay" data-focus="0">
+            <a class="media" href="./demo-atelier/">
+              <img src="./demo-atelier/img/courtyard.jpg" alt="臻行 · 云南私享旅行" loading="lazy">
+              <span class="theme-chip">SITE 15 · 奢享院落（已有 · 云南高定隐世山居）</span>
+              <span class="perspective-chip">臻行 · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#9a7332">曜石黑金高定风 · 大理沙溪景迈山整院包栋与1对1司导私家团</div>
+              <a class="name" href="./demo-atelier/">臻行 · 云南私享旅行</a>
+              <p class="pos">为重视品质与私密的家庭和情侣，设计大理、丽江、沙溪与普洱的私家团及精品院落居停。</p>
+              <div class="cats"><span class="cat">私家团</span><span class="cat">酒店</span><span class="cat">民宿</span><span class="cat">旅游线路</span><span class="cat">日游</span><span class="cat">跟团游</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-atelier/">进入微站</a>
+                  <a class="btn-mp" href="./demo-atelier/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-atelier/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#9a7332" href="./demo-atelier/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="culture" data-focus="0">
+            <a class="media" href="./demo-lens/">
+              <img src="./demo-lens/img/phototrip.jpg" alt="拾光纪 · 独立摄影师纪实旅拍" loading="lazy">
+              <span class="theme-chip">SITE 16 · 纪实旅拍（已有 · 独立摄影师底片全送）</span>
+              <span class="perspective-chip">拾光 Tripic · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#d93854">暖盐画廊留白风 · 拒绝影楼流水线摆拍 · 原片全送写进合同与真实客片档案</div>
+              <a class="name" href="./demo-lens/">拾光纪 · 独立摄影师纪实旅拍</a>
+              <p class="pos">签约大理、丽江、沙溪与川西独立纪实摄影师：1 天只拍 1 组，合同硬性保障「高清原片 100% 全送、肖像隐私默认保密、阴雨天免费改期」。</p>
+              <div class="cats"><span class="cat">日游</span><span class="cat">私家团</span><span class="cat">民宿</span><span class="cat">酒店</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-lens/">进入微站</a>
+                  <a class="btn-mp" href="./demo-lens/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-lens/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#d93854" href="./demo-lens/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article><article class="card" data-group="culture" data-focus="0">
+            <a class="media" href="./demo-local/">
+              <img src="./demo-local/img/food.jpg" alt="城迹 · 长沙玩乐" loading="lazy">
+              <span class="theme-chip">SITE 17 · 城市风物（已有 · 在地街巷美食免排队）</span>
+              <span class="perspective-chip">城迹 CityTrace · 10篇方案</span>
+            </a>
+            <div class="body">
+              <div class="vibe" style="color:#c83e2b">街区买手画报风 · 长沙潮宗街独栋美宿 + 社区夜宵错峰取号动线</div>
+              <a class="name" href="./demo-local/">城迹 · 长沙玩乐</a>
+              <p class="pos">长沙与湘中周末微度假买手站：夜宵老店错峰小团、麻石老巷 Citywalk、独栋美宿与韶山纯玩私家线。</p>
+              <div class="cats"><span class="cat">日游</span><span class="cat">民宿</span><span class="cat">酒店</span><span class="cat">跟团游</span><span class="cat">私家团</span><span class="cat">旅游线路</span></div>
+              <div class="actions">
+                <div class="btn-group">
+                  <a class="btn" href="./demo-local/">进入微站</a>
+                  <a class="btn-mp" href="./demo-local/guides/" title="打开本站交互式方案导读树">方案导读树 (10)</a>
+                  <a class="btn-mp" href="./demo-local/?mp=1" title="模拟微信小程序 web-view 内嵌模式">小程序</a>
+                </div>
+                <a class="deep" style="color:#c83e2b" href="./demo-local/facts/">核验事实表 →</a>
+              </div>
+            </div>
+          </article>
+    </div>
+
+    <section class="arch">
+      <div><b>私家团 8 维方案 × 导读树</b><span>每站 10 篇独占静态页（共 170 篇），融合线路骨架、社会身份认同、酒店角色三段式（首选/备选/选房逻辑）、100% 预算拆解条与「钱花在哪不花在哪」取舍结论。</span></div>
+      <div><b>Answer-First GEO 满配</b><span>首段直答嵌入品牌词与核验月份、<code>Best-of</code> 横评客观不自排第一、每站独立维护 <code>/facts/</code> 与 <code>/facts.json</code> 防大模型幻觉边界，放行国内外实时 AI 搜索爬虫。</span></div>
+      <div><b>全链路「去哪儿旅行」跳转闭环</b><span>首页商品卡、指南关联货架、酒店房型、跟团排期与吸底栏全量预置去哪儿 H5 归因链接与微信小程序桥接槽位，留资表单内置暗流 AI 来源归因。</span></div>
+      <div><b>双重发版防呆与分批滴灌</b><span>内置 <code>npm run seo:qa</code>（8 维 32/40 分质量门禁与防抢词审计）及 <code>npm run seo:guard</code> 快照守卫，支持新域名 <code>DRIP_MAX_BATCH</code> 按周滴灌发布与 IndexNow 实时推送。</span></div>
+    </section>
+  </div>
+  <script>
+    const btns = document.querySelectorAll('[data-filter]');
+    const cards = document.querySelectorAll('#site-grid .card');
+    btns.forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const f = btn.getAttribute('data-filter');
+        btns.forEach((b) => b.classList.toggle('is-active', b === btn));
+        cards.forEach((c) => {
+          if (f === 'all') c.hidden = false;
+          else if (f === 'focus') c.hidden = c.getAttribute('data-focus') !== '1';
+          else c.hidden = c.getAttribute('data-group') !== f;
+        });
+      });
+    });
+  </script>
+</body>
+</html>

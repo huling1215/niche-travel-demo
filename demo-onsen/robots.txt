@@ -1,0 +1,4 @@
+# 演示预览环境（noindex），禁止收录以防与正式独立域名抢权重
+# 正式域名发版请设置 PRODUCTION_SEO=1 或在 site.yaml 中设置 demo: false
+User-agent: *
+Disallow: /
